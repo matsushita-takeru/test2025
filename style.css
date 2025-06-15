@@ -1,0 +1,241 @@
+body {
+    background-color: #000;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    font-family: sans-serif;
+}
+
+.page-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.language-selector {
+    display: flex;
+    align-items: center;
+    margin-bottom: 50px; /* 画像に基づいた間隔調整 */
+    gap: 20px; /* 要素間のスペースを追加 */
+}
+
+.lang-jp {
+    border: 2px solid #fff;
+    border-radius: 50px; /* 楕円形にする */
+    padding: 10px 20px;
+    font-size: 1.2em;
+}
+
+.lang-en {
+    background-color: transparent;
+    border: none;
+    color: #fff;
+    font-size: 1.2em;
+    padding: 10px;
+    text-decoration: none; /* リンクの下線を削除 */
+}
+
+.menu-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.menu-item {
+    background-color: #d3d3d3; /* ライトグレー */
+    color: #000;
+    border: none;
+    padding: 20px 80px; /* 画像に基づいたパディング調整 */
+    margin-bottom: 20px; /* ボタン間の間隔 */
+    font-size: 1.5em;
+    border-radius: 5px; /* 少し角を丸くする */
+    text-align: center;
+}
+
+/* Styles for s3.html - Strength Selector */
+.strength-selector-container {
+    display: flex;
+    align-items: center;
+    justify-content: center; /* Center items horizontally */
+    margin-top: 50px; /* Space from language selector */
+    gap: 20px; /* Space between 薄め/濃いめ text and slider */
+}
+
+.strength-text {
+    font-size: 1.8em; /* Adjust size as needed */
+    color: #fff;
+}
+
+.slider-ui {
+    display: flex;
+    align-items: center;
+    background-color: #d3d3d3; /* Light grey background for the slider bar area */
+    padding: 10px 0; /* Padding inside the slider's grey background */
+    border-radius: 5px; /* Optional: slightly rounded corners for the grey bar */
+}
+
+.slider-arrow {
+    font-size: 2em; /* Adjust arrow size */
+    color: #000; /* Black arrows */
+    padding: 0 15px; /* Space around arrows */
+    cursor: pointer; /* Indicate interactivity */
+}
+
+.slider-bar {
+    width: 200px; /* Adjust width of the central bar */
+    height: 10px; /* Adjust height/thickness of the bar */
+    background-color: #000; /* Black central bar */
+    cursor: pointer; /* Add cursor pointer to indicate it's clickable */
+}
+
+/* Ensure language selector styles from s1/s2 apply correctly */
+/* .language-selector, .lang-jp, .lang-en styles are assumed to be existing and sufficient */
+
+/* Styles for s4.html - Diamond Layout Control */
+.diamond-layout-container {
+    position: relative;
+    width: 300px; /* Adjust as needed based on image proportions */
+    height: 300px; /* Adjust as needed */
+    margin-top: 50px;
+    display: flex; /* Using flex for easier centering of the diamond itself if needed */
+    justify-content: center;
+    align-items: center;
+}
+
+.control-label {
+    position: absolute;
+    color: #fff;
+    font-size: 2em; /* Adjust as needed */
+}
+
+.label-rei { /* 冷 */
+    top: 10px; /* Adjust based on visual alignment */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.label-on { /* 温 */
+    bottom: 10px; /* Adjust based on visual alignment */
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.label-chuu { /* 中 */
+    left: 10px; /* Adjust based on visual alignment */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.label-dai { /* 大 */
+    right: 10px; /* Adjust based on visual alignment */
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+.diamond-shape {
+    position: absolute;
+    width: 200px; /* Width of the square that will be rotated */
+    height: 200px; /* Height of the square */
+    border: 2px solid #fff; /* White lines of the diamond */
+    transform: rotate(45deg); /* Rotate to make it a diamond */
+    /* The diamond shape itself is formed by the borders of its pseudo-elements or internal divs if needed for lines */
+}
+
+/* Lines for the diamond - using pseudo-elements on diamond-shape */
+.diamond-shape::before, .diamond-shape::after {
+    content: '';
+    position: absolute;
+    background-color: #fff;
+}
+
+.diamond-shape::before { /* Horizontal line */
+    left: 50%;
+    top: -2.5px; /* Adjust to align with border */
+    width: 2px; /* Line thickness */
+    height: 100%;
+    transform: translateX(-50%) rotate(-45deg); /* Counter-rotate to align with parent's original axis */
+    transform-origin: center;
+}
+
+.diamond-shape::after { /* Vertical line */
+    top: 50%;
+    left: -2.5px; /* Adjust to align with border */
+    width: 100%;
+    height: 2px; /* Line thickness */
+    transform: translateY(-50%) rotate(-45deg); /* Counter-rotate to align with parent's original axis */
+    transform-origin: center;
+}
+
+
+.diamond-button {
+    position: absolute;
+    width: 60px; /* Diameter of the circle */
+    height: 60px; /* Diameter of the circle */
+    background-color: #d3d3d3; /* Light grey */
+    border-radius: 50%; /* Makes it a circle */
+    border: none;
+    cursor: pointer;
+    /* Positions will be relative to the .diamond-shape container */
+    /* These positions need to be calculated carefully to place them within the diamond quadrants */
+    /* The transform on diamond-shape makes positioning tricky. It might be easier to position them absolutely to diamond-layout-container */
+}
+
+/* Button positions - these are approximate and need fine-tuning */
+/* These positions are relative to the .diamond-layout-container */
+.btn-pos-1 { /* Top button */
+    top: 20%; /* Adjust */
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.btn-pos-2 { /* Left button */
+    top: 50%;
+    left: 20%; /* Adjust */
+    transform: translate(-50%, -50%);
+}
+
+.btn-pos-3 { /* Right button */
+    top: 50%;
+    right: 20%; /* Adjust, or use left: 80% */
+    transform: translate(50%, -50%); /* Corrected transform for right positioning */
+}
+
+.btn-pos-4 { /* Bottom button */
+    bottom: 20%; /* Adjust */
+    left: 50%;
+    transform: translate(-50%, 50%); /* Corrected transform for bottom positioning */
+}
+
+/* Blinking animation for buttons */
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+.blinking {
+    animation: blink 0.5s 6; /* 0.5s per blink, 6 times for 3 seconds */
+}
+
+/* Styles for Popup Image */
+#popup-image-container {
+    position: fixed; /* Overlay the whole screen */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+    display: flex; /* Use flexbox to center the image */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000; /* Ensure it's on top of other elements */
+}
+
+#popup-image {
+    max-width: 80%;
+    max-height: 80%;
+    border: 3px solid white;
+    box-shadow: 0 0 15px rgba(0,0,0,0.5);
+}

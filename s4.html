@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en"> <!-- Set language to English -->
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Temperature/Size Control</title> <!-- Updated title -->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="page-container">
+        <div class="language-selector">
+            <span class="lang-jp">日本語</span> <!-- Changed class to lang-jp -->
+            <span class="lang-en">English</span> <!-- Changed class to lang-en -->
+        </div>
+        <div class="main-content-area diamond-layout-container"> <!-- Renamed for clarity and specificity -->
+            <span class="control-label label-rei">冷</span>
+            <span class="control-label label-on">温</span>
+            <span class="control-label label-chuu">中</span>
+            <span class="control-label label-dai">大</span>
+            <div class="diamond-shape">
+                <button class="diamond-button btn-pos-1" onclick="handleDiamondButtonClick(this, 's5.png')"></button>
+                <button class="diamond-button btn-pos-2" onclick="handleDiamondButtonClick(this, 's5.png')"></button>
+                <button class="diamond-button btn-pos-3" onclick="handleDiamondButtonClick(this, 's5.png')"></button>
+                <button class="diamond-button btn-pos-4" onclick="handleDiamondButtonClick(this, 's5.png')"></button>
+            </div>
+        </div>
+        <!-- Popup image container -->
+        <div id="popup-image-container" style="display:none;">
+            <img id="popup-image" src="" alt="Popup Image">
+        </div>
+    </div>
+    <script>
+        function handleDiamondButtonClick(buttonElement, imageSrc) {
+            // Prevent multiple clicks during animation
+            if (buttonElement.classList.contains('blinking')) {
+                return;
+            }
+
+            // 1. Blink button
+            buttonElement.classList.add('blinking');
+
+            // 2. Show image
+            const popupContainer = document.getElementById('popup-image-container');
+            const popupImage = document.getElementById('popup-image');
+            popupImage.src = imageSrc;
+            popupContainer.style.display = 'flex';
+
+            // 3. After 3 seconds, remove blink, hide image, and redirect
+            setTimeout(() => {
+                buttonElement.classList.remove('blinking');
+                popupContainer.style.display = 'none';
+                popupImage.src = ''; // Clear image source
+                window.location.href = 's1.html';
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
